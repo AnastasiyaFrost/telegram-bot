@@ -1,4 +1,4 @@
-package pro.sky.telegrambot.enity;
+package pro.sky.telegrambot.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,15 +13,15 @@ public class NotificationTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
 
-    private int chatId;
-    private String notificationText;
+    private Long chatId;
+    private String messageContent;
     private LocalDateTime notificationSendDatetime;
 
-    public NotificationTask(long id, int chatId, String notificationText,
+    public NotificationTask(long id, Long chatId, String messageContent,
                             LocalDateTime notificationSendDatetime) {
         this.id = id;
         this.chatId = chatId;
-        this.notificationText = notificationText;
+        this.messageContent = messageContent;
         this.notificationSendDatetime = notificationSendDatetime;
     }
 
@@ -29,20 +29,20 @@ public class NotificationTask {
 
     }
 
-    public int getChatId() {
+    public Long getChatId() {
         return chatId;
     }
 
-    public void setChatId(int chatId) {
+    public void setChatId(Long chatId) {
         this.chatId = chatId;
     }
 
-    public String getNotificationText() {
-        return notificationText;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setNotificationText(String notificationText) {
-        this.notificationText = notificationText;
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public LocalDateTime getNotificationSendDatetime() {
@@ -58,12 +58,12 @@ public class NotificationTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationTask that = (NotificationTask) o;
-        return id == that.id && chatId == that.chatId && Objects.equals(notificationText, that.notificationText) && Objects.equals(notificationSendDatetime, that.notificationSendDatetime);
+        return id == that.id && chatId == that.chatId && Objects.equals(messageContent, that.messageContent) && Objects.equals(notificationSendDatetime, that.notificationSendDatetime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, notificationText, notificationSendDatetime);
+        return Objects.hash(id, chatId, messageContent, notificationSendDatetime);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class NotificationTask {
         return "TelegramBotNotificationTask{" +
                 "id=" + id +
                 ", chatId=" + chatId +
-                ", notificationText='" + notificationText + '\'' +
+                ", notificationText='" + messageContent + '\'' +
                 ", notificationSendDatetime=" + notificationSendDatetime +
                 '}';
     }
