@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class TelegramBotNotificationTask {
+public class NotificationTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
@@ -17,15 +17,15 @@ public class TelegramBotNotificationTask {
     private String notificationText;
     private LocalDateTime notificationSendDatetime;
 
-    public TelegramBotNotificationTask(long id, int chatId, String notificationText,
-                                       LocalDateTime notificationSendDatetime) {
+    public NotificationTask(long id, int chatId, String notificationText,
+                            LocalDateTime notificationSendDatetime) {
         this.id = id;
         this.chatId = chatId;
         this.notificationText = notificationText;
         this.notificationSendDatetime = notificationSendDatetime;
     }
 
-    public TelegramBotNotificationTask() {
+    public NotificationTask() {
 
     }
 
@@ -57,7 +57,7 @@ public class TelegramBotNotificationTask {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TelegramBotNotificationTask that = (TelegramBotNotificationTask) o;
+        NotificationTask that = (NotificationTask) o;
         return id == that.id && chatId == that.chatId && Objects.equals(notificationText, that.notificationText) && Objects.equals(notificationSendDatetime, that.notificationSendDatetime);
     }
 
