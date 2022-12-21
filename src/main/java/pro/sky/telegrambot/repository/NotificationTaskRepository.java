@@ -14,3 +14,4 @@ public interface NotificationTaskRepository extends JpaRepository<NotificationTa
             "LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)", nativeQuery = true)
     List<NotificationTask> getTasksToSend();
 }
+

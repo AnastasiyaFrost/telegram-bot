@@ -22,16 +22,20 @@ import java.util.regex.Pattern;
 
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
+    private final NotificationTaskRepository notificationTaskRepository;
     private static String STR_CMD = "/start";
     private static String GREET_MSG = "Добро пожаловать в чатбот-напоминалку!";
     private static String WRNG_FORM_MSG = "Команда не распознана. " +
             "Пожалуйста, проверьте формат введенного сообщения";
 
     private static Pattern pattern = Pattern.compile("([0-9\\.\\:\\s]{16})(\\s)([\\W+]+)");
+
+
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
 
+
     public TelegramBotUpdatesListener(NotificationTaskRepository notificationTaskRepository) {
-        this notificationTaskRepository = notificationTaskRepository;
+        this.notificationTaskRepository = notificationTaskRepository;
     }
 
     @Autowired
@@ -73,8 +77,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 }
             }
         });
+
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
+
+
 
     @Scheduled(cron = "0 0/1 * * * *")
     public void run() {
@@ -84,7 +91,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             sendMessage(task);
         });
     }
-
 
     private void sendMessage(Long chatId, String messageContent) {
         SendMessage sendMessage = new SendMessage(chatId, messageContent);
